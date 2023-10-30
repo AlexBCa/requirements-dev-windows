@@ -4,14 +4,18 @@
 :: Variables de entorno
 set UBUNTU_IP=192.168.1.100
 
+:: Habilitar la ejecución de scripts en PowerShell
+echo Habilitando la ejecución de scripts en PowerShell...
+Set-ExecutionPolicy AllSigned
+
+::instalar chocolatet
+powershell Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 
 :: Istalar NVM con Chocolatey
 echo Instalando NVM con Chocolatey...
 choco install nvm -y
 
 
-:: Pausa para los pasos manuales
-pause
 :: Instalar Git
 echo Instalando Git...
 choco install git -y
@@ -43,9 +47,6 @@ pause
 echo Instalando GitHub CLI (gh)...
 choco install gh -y
 
-:: Habilitar la ejecución de scripts en PowerShell
-echo Habilitando la ejecución de scripts en PowerShell...
-Set-ExecutionPolicy Unrestricted -Scope CurrentUser
 
 echo Todas las tareas completadas.
 pause
